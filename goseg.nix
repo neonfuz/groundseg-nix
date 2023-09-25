@@ -4,14 +4,14 @@
 # development
 , pkgs
 
-, groundseg-ui
+, goseg-ui
 
 , buildGo121Module
 , fetchFromGitHub
 }:
 
 buildGo121Module rec {
-  pname = "groundseg-v2";
+  pname = "goseg";
   version = "unstable-2023-09-24";
 
   src = fetchFromGitHub {
@@ -22,7 +22,7 @@ buildGo121Module rec {
   } + "/goseg";
 
   preBuild = ''
-    cp -r ${groundseg-ui} ./web
+    cp -r ${goseg-ui} ./web
     # remove fmt import to fix error
     sed -i /fmt/d noun/noun.go
   '';

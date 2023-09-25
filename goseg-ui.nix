@@ -8,7 +8,7 @@
 }:
 
 buildNpmPackage rec {
-  pname = "groundseg-v2-ui";
+  pname = "goseg-ui";
   version = "unstable-2023-09-24";
 
   src = fetchFromGitHub {

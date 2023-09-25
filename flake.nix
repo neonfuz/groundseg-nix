@@ -20,11 +20,11 @@
         goseg-ui = callPackage ./goseg-ui.nix { };
       });
 
-      defaultPackage = forAllSystems (system: self.packages.${system}.groundseg);
+      defaultPackage = forAllSystems (system: self.packages.${system}.goseg);
 
       defaultApp = forAllSystems (system: {
         type = "app";
-        program = "${self.packages.${system}.groundseg}/bin/goseg";
+        program = "${self.packages.${system}.goseg}/bin/goseg";
       });
     };
 }
