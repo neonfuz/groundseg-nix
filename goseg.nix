@@ -27,12 +27,6 @@ let
 
     makeCacheWritable = true;
 
-    # The prepack script runs the build script, which we'd rather do in the build phase.
-    npmPackFlags = [ "--ignore-scripts" ];
-
-  # from example, remove?:
-  # NODE_OPTIONS = "--openssl-legacy-provider";
-
     installPhase = ''
       runHook preInstall
       cp -a build $out
