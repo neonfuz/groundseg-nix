@@ -25,7 +25,8 @@ let
 
     npmDepsHash = "sha256-ZY6WtWVJkAm5g8+5lquFW26PYoxST6Y1zqsx42tHjlM=";
 
-    makeCacheWritable = true;
+    # TODO test if this is actually needed
+    # makeCacheWritable = true;
 
     installPhase = ''
       runHook preInstall
@@ -54,7 +55,7 @@ buildGo121Module rec {
     #        remove them if it builds without it
 
     # remove fmt import to fix error
-    sed -i /fmt/d noun/noun.go
+    sed -i 's/\t"fmt"/\t_ "fmt"/' noun/noun.go
   '';
 
   vendorHash = "sha256-Ok8ObEtie61HasVbvUH3TodouMsJXCuL2cBULsqfhVQ=";
