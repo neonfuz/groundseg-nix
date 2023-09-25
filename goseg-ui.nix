@@ -9,12 +9,12 @@
 
 buildNpmPackage rec {
   pname = "goseg-ui";
-  version = "unstable";
+  version = "unstable-2023-09-25";
 
   src = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "d12e1f9daee955e8f0d29c58612bf02dbf6cd60a";
+    rev = "d20938a881df5ff393685220e7d7edb97d04d909";
     hash = "sha256-A+ONRzkTd25TzvYQICA4XSyaWW45S3JClUF4P3kEAqk=";
   } + "/ui";
 

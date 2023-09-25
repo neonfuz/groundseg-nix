@@ -12,13 +12,13 @@
 
 buildGo121Module rec {
   pname = "goseg";
-  version = "unstable";
+  version = "unstable-2023-09-25";
 
   src = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "13b55914eb1f5d244ce9a73eeae97c8900a799b1";
-    hash = "sha256-h7dCRjg0LWKE4w4G+ODRfbqp+G07MPoaErN3efpYpSM=";
+    rev = "d20938a881df5ff393685220e7d7edb97d04d909";
+    hash = "sha256-A+ONRzkTd25TzvYQICA4XSyaWW45S3JClUF4P3kEAqk=";
   } + "/goseg";
 
   preBuild = ''
