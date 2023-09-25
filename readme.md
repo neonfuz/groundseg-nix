@@ -30,7 +30,7 @@ For convenience after building you can install it into your nix-env:
 # install
 $ nix-env -i ./result
 # usage
-$ goseg
+$ sudo goseg
 ```
 
 ## Running on NixOS
