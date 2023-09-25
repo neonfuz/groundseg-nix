@@ -1,5 +1,7 @@
 # GroundSeg-nix
 
+<img align="right" width="150" src="https://nyc3.digitaloceanspaces.com/neonfuz-ur/tabbyr-firwen/2023.9.15..19.20.05-groundseg-nix.png" />
+
 This is a work in progress nix package for GroundSeg v2 (AKA goseg). GroundSeg
 v2 is in heavy development and is not released yet, but packaging v1 is much
 more complex and realistically by the time it gets packaged it may be
