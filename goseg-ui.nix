@@ -9,13 +9,13 @@
 
 buildNpmPackage rec {
   pname = "goseg-ui";
-  version = "unstable-2023-09-24";
+  version = "unstable";
 
   src = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "a8c72589cd6aae5ef155c20c5964b2d9d62a10a1";
-    hash = "sha256-sYbI0sPETcmMcfKMapmSEl7Gor+7eJmWd9qUmlhrDJA=";
+    rev = "d12e1f9daee955e8f0d29c58612bf02dbf6cd60a";
+    hash = "sha256-A+ONRzkTd25TzvYQICA4XSyaWW45S3JClUF4P3kEAqk=";
   } + "/ui";
 
   npmDepsHash = "sha256-ZY6WtWVJkAm5g8+5lquFW26PYoxST6Y1zqsx42tHjlM=";

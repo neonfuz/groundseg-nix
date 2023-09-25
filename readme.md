@@ -10,14 +10,35 @@ and probably needs some patches.
 
 ## Building
 
-Flakes (recommended):
+### Flakes (recommended):
 
 ```bash
 nix build
 ```
 
-Non-flakes (compat layer):
+### Non-flakes (compat layer):
 
 ```bash
 nix build
+```
+
+## Running on NixOS
+
+Make sure you have network manager and docker 24 enabled, and that your firewall
+is configured to allow the appropriate traffic in your system config:
+
+```nix
+{
+  virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_24;
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
+}
+```
+
+run groundseg
+
+```bash
+cd groundseg-nix
+sudo nix run .#goseg
 ```
