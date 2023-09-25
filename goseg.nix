@@ -4,31 +4,63 @@
 # development
 , pkgs
 
-, goseg-ui
-
-, buildGo121Module
 , fetchFromGitHub
+, buildNpmPackage
+, buildGo121Module
 }:
 
-buildGo121Module rec {
-  pname = "goseg";
+let
   version = "unstable-2023-09-25";
-
-  src = fetchFromGitHub {
+  gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "d20938a881df5ff393685220e7d7edb97d04d909";
+    rev = "d12e1f9daee955e8f0d29c58612bf02dbf6cd60a";
     hash = "sha256-A+ONRzkTd25TzvYQICA4XSyaWW45S3JClUF4P3kEAqk=";
-  } + "/goseg";
+  };
+  goseg-ui = buildNpmPackage rec {
+    pname = "goseg-ui";
+    inherit version;
+
+    src = gosegSrc + "/ui";
+
+    npmDepsHash = "sha256-ZY6WtWVJkAm5g8+5lquFW26PYoxST6Y1zqsx42tHjlM=";
+
+    makeCacheWritable = true;
+
+    # The prepack script runs the build script, which we'd rather do in the build phase.
+    npmPackFlags = [ "--ignore-scripts" ];
+
+  # from example, remove?:
+  # NODE_OPTIONS = "--openssl-legacy-provider";
+
+    installPhase = ''
+      runHook preInstall
+      cp -a build $out
+      runHook postInstall
+    '';
+
+    meta = with lib; {
+      description = "The best way to run an Urbit ship";
+      homepage = "https://github.com/Native-Planet/GroundSeg";
+      license = licenses.mit;
+      maintainers = with maintainers; [ neonfuz ];
+    };
+  };
+in
+buildGo121Module rec {
+  pname = "goseg";
+  inherit version;
+
+  src = gosegSrc + "/goseg";
 
   preBuild = ''
     cp -r ${goseg-ui} ./web
 
     # HACKS: on each update, try removing each of these and
     #        remove them if it builds without it
+
     # remove fmt import to fix error
     sed -i /fmt/d noun/noun.go
-    #sed -i /delJSON/d startram/startram.go
   '';
 
   vendorHash = "sha256-Ok8ObEtie61HasVbvUH3TodouMsJXCuL2cBULsqfhVQ=";

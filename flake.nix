@@ -16,8 +16,7 @@
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
     in {
       packages = forAllSystems (system: with nixpkgsFor.${system}; rec {
-        goseg = callPackage ./goseg.nix { goseg-ui = goseg-ui; };
-        goseg-ui = callPackage ./goseg-ui.nix { };
+        goseg = callPackage ./goseg.nix { };
       });
 
       defaultPackage = forAllSystems (system: self.packages.${system}.goseg);
