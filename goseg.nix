@@ -4,6 +4,8 @@
 # development
 , pkgs
 
+, groundseg-ui
+
 , buildGo121Module
 , fetchFromGitHub
 }:
@@ -20,7 +22,9 @@ buildGo121Module rec {
   } + "/goseg";
 
   preBuild = ''
-    # TODO: after building goseg UI copy it to ./web here
+    cp -r ${groundseg-ui} ./web
+    # remove fmt import to fix error
+    sed -i /fmt/d noun/noun.go
   '';
 
   vendorHash = "sha256-Ok8ObEtie61HasVbvUH3TodouMsJXCuL2cBULsqfhVQ=";
