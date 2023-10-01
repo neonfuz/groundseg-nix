@@ -1,21 +1,17 @@
 { lib
 , stdenv
-
-# development
-, pkgs
-
 , fetchFromGitHub
 , buildNpmPackage
 , buildGo121Module
 }:
 
 let
-  version = "unstable-2023-09-25";
+  version = "unstable-2023-10-01";
   gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "d12e1f9daee955e8f0d29c58612bf02dbf6cd60a";
-    hash = "sha256-A+ONRzkTd25TzvYQICA4XSyaWW45S3JClUF4P3kEAqk=";
+    rev = "7e952a9ff9318d8317dd7a78d3e0f7ec92e60788";
+    hash = "sha256-kv+OFIoBxrMi52f7EfHlmBd3zlRVYgt2RCWv+Nj7B54=";
   };
   goseg-ui = buildNpmPackage rec {
     pname = "goseg-ui";
@@ -23,10 +19,7 @@ let
 
     src = gosegSrc + "/ui";
 
-    npmDepsHash = "sha256-ZY6WtWVJkAm5g8+5lquFW26PYoxST6Y1zqsx42tHjlM=";
-
-    # TODO test if this is actually needed
-    # makeCacheWritable = true;
+    npmDepsHash = "sha256-DEHRrVU/sYiodUO9HxxQKJqnK7n2RV9elxjU++ZEr6U="
 
     installPhase = ''
       runHook preInstall
@@ -51,14 +44,15 @@ buildGo121Module rec {
   preBuild = ''
     cp -r ${goseg-ui} ./web
 
-    # HACKS: on each update, try removing each of these and
-    #        remove them if it builds without it
+    # HACKS: These are required to build the current version, but may
+    #        cause issues in the future. Try removing these when
+    #        upgrading.
 
-    # remove fmt import to fix error
-    sed -i 's/\t"fmt"/\t_ "fmt"/' noun/noun.go
+    # remove noun folder to prevent build errors trying to build it
+    rm -r noun
   '';
 
-  vendorHash = "sha256-Ok8ObEtie61HasVbvUH3TodouMsJXCuL2cBULsqfhVQ=";
+  vendorHash = "sha256-YrMs08zQkSUZRkiMFSD9jCxktDOmT+KogahTBRyzv+U=";
 
   meta = with lib; {
     description = "The best way to run an Urbit ship";
