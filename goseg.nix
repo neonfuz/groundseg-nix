@@ -19,7 +19,7 @@ let
 
     src = gosegSrc + "/ui";
 
-    npmDepsHash = "sha256-DEHRrVU/sYiodUO9HxxQKJqnK7n2RV9elxjU++ZEr6U="
+    npmDepsHash = "sha256-DEHRrVU/sYiodUO9HxxQKJqnK7n2RV9elxjU++ZEr6U=";
 
     installPhase = ''
       runHook preInstall
@@ -42,7 +42,11 @@ buildGo121Module rec {
   src = gosegSrc + "/goseg";
 
   preBuild = ''
+    # Copy frontend into web folder, symlink doesn't work
     cp -r ${goseg-ui} ./web
+
+    # Put config in /var/lib instead of /opt
+    find . -type f -iname \*.go -exec sed -i 's|/opt/nativeplanet/groundseg|/var/lib/groundseg|g' {} \;
 
     # HACKS: These are required to build the current version, but may
     #        cause issues in the future. Try removing these when
