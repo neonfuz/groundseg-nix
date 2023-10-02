@@ -3,6 +3,7 @@ flake: { config, lib, pkgs, ... }:
 let
   cfg = config.services.groundseg;
   inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) goseg;
+  inherit (lib) mkOption mkEnableOption types;
 in
 {
   options = {

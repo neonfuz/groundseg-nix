@@ -15,7 +15,7 @@
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
     in {
-      nixosModules.groundseg = import ./module.nix;
+      nixosModules.groundseg = import ./module.nix self;
       packages = forAllSystems (system: with nixpkgsFor.${system}; rec {
         goseg = callPackage ./goseg.nix { };
       });
