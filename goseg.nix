@@ -19,7 +19,7 @@ let
 
     src = gosegSrc + "/ui";
 
-    npmDepsHash = "sha256-DEHRrVU/sYiodUO9HxxQKJqnK7n2RV9elxjU++ZEr6U=";
+    npmDepsHash = "sha256-h/fj+jxL1601fPOCSOLW2awOwZsPcH4qFGQgAIlMJZA=";
 
     installPhase = ''
       runHook preInstall
