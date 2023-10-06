@@ -48,8 +48,11 @@ in
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
-        User = "groundseg";
-        Group = "groundseg";
+        ## Service will run as root until bugs are fixed upstream
+        #User = "groundseg";
+        #Group = "groundseg";
+        User = "root";
+        Group = "root";
         Restart = "always";
         ExecStart = "${lib.getBin cfg.package}/bin/goseg";
         StateDirectory = "groundseg";
