@@ -1,5 +1,6 @@
 { lib
 , stdenv
+, lm_sensors
 , fetchFromGitHub
 , buildNpmPackage
 , buildGo121Module
@@ -10,8 +11,8 @@ let
   gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "d8f578acdcaca6c69781415ba4fabf942d1ce462";
-    hash = "sha256-9Ecyelepp3w7JCMZquAt1KZ8SfjEw2e6ZipC4rb+DSU=";
+    rev = "fc1f0c60ec5df770979383b87a5ac72b74b87170";
+    hash = "sha256-UM1jpgLxviQYaC0SLdhJB/HrXDWPK+ZlYo0Dqs2X9aw=";
   };
   goseg-ui = buildNpmPackage rec {
     pname = "goseg-ui";
@@ -40,6 +41,8 @@ buildGo121Module rec {
   inherit version;
 
   src = gosegSrc + "/goseg";
+
+  propegatedBuildInputs = [ lm_sensors ];
 
   preBuild = ''
     # Copy frontend into web folder, symlink doesn't work
