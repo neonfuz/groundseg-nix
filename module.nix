@@ -35,6 +35,8 @@ in
     # TODO reduce this to just opening the necessary ports
     networking.firewall.enable = false;
 
+    # Experiment: remove networkmanager to see how much it affects closure size
+    # results, closure was 800mb smaller, probably due to excluding gtk4
     networking.networkmanager.enable = true;
 
     virtualisation.docker.enable = true;
