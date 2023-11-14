@@ -11,8 +11,8 @@ let
   gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "fc1f0c60ec5df770979383b87a5ac72b74b87170";
-    hash = "sha256-UM1jpgLxviQYaC0SLdhJB/HrXDWPK+ZlYo0Dqs2X9aw=";
+    rev = "a124a35292c1e428981e909514bf5222388c31cd";
+    hash = "sha256-dQWHEdJEDr2xrQne9O+3xhYg1y73hpaWpVZhWY7kzNU=";
   };
   goseg-ui = buildNpmPackage rec {
     pname = "goseg-ui";
