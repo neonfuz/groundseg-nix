@@ -62,6 +62,7 @@ Last tested 2023-11-25
  - noun folder existence makes build fail (has main entrypoint?)
  - minio does not get set up in ships
  - penpai shows 1 less core than the machine has (is this intentional?)
+ - penpai doesn't work through startram
 
 ## Feature requests
 
