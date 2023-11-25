@@ -3,14 +3,42 @@
 <img align="right" width="150" src="https://nyc3.digitaloceanspaces.com/neonfuz-ur/tabbyr-firwen/2023.9.15..19.20.05-groundseg-nix.png" />
 
 This is a work in progress nix package for GroundSeg v2 (AKA goseg). GroundSeg
-v2 is in heavy development and is not released yet, but packaging v1 is much
-more complex and realistically by the time it gets packaged it may be
-deprecated. v1 was a python app which has many outdated dependencies in nixpkgs.
+v2 is still in development and not released yet, so expect bugs.
 
-As stated above, this is a work in progress. Currently it builds but is untested
-and probably needs some patches.
+## Installation (flake + module)
+
+Until it's merged into nixpkgs, this module is distributed as a flake. In order
+to install the systemd service you need to enable flakes on your. For info on
+enabling flakes on nixos go
+[here](https://nixos.wiki/wiki/Flakes#Enable_flakes_permanently_in_NixOS)
+
+flake.nix:
+```nix
+{
+  # Import groundseg flake:
+  inputs.groundseg.url = "github:neonfuz/groundseg-nix";
+
+  nixosConfigurations.your-hostname = nixpkgs.lib.nixosSystem {
+    ...
+    modules = [
+      ./configuration.nix
+      # Add the module to your system modules
+      groundseg.nixosModules.groundseg
+    ];
+  };
+}
+```
+
+```nix
+{
+  # Enable the groundseg service
+  services.groundseg.enable = true;
+}
+```
 
 ## Building
+
+You can also build the groundseg package without the systemd service for testing
 
 ### Flakes (recommended):
 
@@ -35,7 +63,10 @@ $ nix-env -i ./result
 $ sudo goseg
 ```
 
-## Running on NixOS
+## Running nix-env build on NixOS
+
+If you use the flake and module as outlined in the "Installation (flake + module)"
+these options will be enabled for you and you don't need to do anything else.
 
 Make sure you have network manager and docker 24 enabled, and that your firewall
 is configured to allow the appropriate traffic in your system config:
@@ -53,5 +84,5 @@ run groundseg:
 
 ```bash
 $ cd groundseg-nix
-$ sudo nix run .#goseg
+$ sudo nix run .#groundseg
 ```
