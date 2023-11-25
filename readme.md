@@ -67,6 +67,8 @@ Last tested 2023-11-25
 
 These are features that I think groundseg v2 should implement
 
+ - ships dashboard: on/off toggle
+ - ships dashboard: sorting options
  - system tab disk usage: show disk labels instead of disk path
  - booting ships: populate ship names from key filename
  - booting ships: allow booting in parallel (/boot/new/sampel-palnet)
