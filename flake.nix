@@ -17,14 +17,14 @@
     in {
       nixosModules.groundseg = import ./module.nix self;
       packages = forAllSystems (system: with nixpkgsFor.${system}; rec {
-        goseg = callPackage ./goseg.nix { };
+        groundseg = callPackage ./groundseg.nix { };
       });
 
-      defaultPackage = forAllSystems (system: self.packages.${system}.goseg);
+      defaultPackage = forAllSystems (system: self.packages.${system}.groundseg);
 
       defaultApp = forAllSystems (system: {
         type = "app";
-        program = "${self.packages.${system}.goseg}/bin/goseg";
+        program = "${self.packages.${system}.groundseg}/bin/goseg";
       });
     };
 }

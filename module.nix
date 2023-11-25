@@ -2,7 +2,7 @@ flake: { config, lib, pkgs, ... }:
 
 let
   cfg = config.services.groundseg;
-  inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) goseg;
+  inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) groundseg;
   inherit (lib) mkOption mkEnableOption types;
 in
 {
@@ -14,7 +14,7 @@ in
 
       package = mkOption {
         type = types.package;
-        default = goseg;
+        default = groundseg;
         description = ''
           The GroundSeg package to use with the service.
         '';
