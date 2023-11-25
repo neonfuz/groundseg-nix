@@ -52,37 +52,26 @@ $ nix build
 $ nix-build
 ```
 
-## Installation (nix-env)
+## Known bugs
 
-For convenience after building you can install it into your nix-env:
+Last tested 2023-11-25
 
-```bash
-# install
-$ nix-env -i ./result
-# usage
-$ sudo goseg
-```
+ - netdata apps plugin uses tons of cpu
+ - does not run as non root user
+ - spaces in path name make disk usage detection fail
+ - noun folder existence makes build fail (has main entrypoint?)
+ - minio does not get set up in ships
+ - penpai shows 1 less core than the machine has (is this intentional?)
 
-## Running nix-env build on NixOS
+## Feature requests
 
-If you use the flake and module as outlined in the "Installation (flake + module)"
-these options will be enabled for you and you don't need to do anything else.
+These are features that I think groundseg v2 should implement
 
-Make sure you have network manager and docker 24 enabled, and that your firewall
-is configured to allow the appropriate traffic in your system config:
+ - system tab disk usage: show disk labels instead of disk path
+ - booting ships: populate ship names from key filename
+ - booting ships: allow booting in parallel (/boot/new/sampel-palnet)
+ - penpai: ability to read data from ships
+ - declarative: allow setting password from config
+ - declarative: allow configuring startram from config
+ - declarative: allow booting and importing ships from config
 
-```nix
-{
-  virtualisation.docker.enable = true;
-  virtualisation.docker.package = pkgs.docker_24;
-  networking.networkmanager.enable = true;
-  networking.firewall.enable = false;
-}
-```
-
-run groundseg:
-
-```bash
-$ cd groundseg-nix
-$ sudo nix run .#groundseg
-```
