@@ -7,11 +7,11 @@
 }:
 
 let
-  version = "unstable-2023-11-25";
+  version = "2.0.1-1";
   gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "6146c1ab3954b2bf15edfdddb712ad2f816d227d";
+    rev = "v${version}";
     #hash = lib.fakeHash;
     hash = "sha256-4VWguVmN1TBwdx3Moqf6f9C7tHKbGYjS4c5OM/Swhv8=";
   };
