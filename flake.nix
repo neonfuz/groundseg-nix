@@ -3,12 +3,7 @@
 
   inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
 
-  inputs.flake-compat = {
-    url = "github:edolstra/flake-compat";
-    flake = false;
-  };
-
-  outputs = { self, nixpkgs, flake-compat, ... }:
+  outputs = { self, nixpkgs, ... }:
     let
       # TODO test "x86_64-darwin" "aarch64-linux" "aarch64-darwin"
       supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
