@@ -43,6 +43,7 @@ buildGo121Module rec {
 
   src = gosegSrc + "/goseg";
 
+  # TODO check if this is the proper way to import sensors
   propegatedBuildInputs = [ lm_sensors ];
 
   preBuild = ''
@@ -52,11 +53,7 @@ buildGo121Module rec {
     # Put config in /var/lib instead of /opt
     find . -type f -iname \*.go -exec sed -i 's|/opt/nativeplanet/groundseg|/var/lib/groundseg|g' {} \;
 
-    # HACKS: These are required to build the current version, but may
-    #        cause issues in the future. Try removing these when
-    #        upgrading.
-
-    # remove noun folder to prevent build errors trying to build it
+    # HACK: remove noun folder to prevent build errors trying to build it
     rm -r noun
   '';
 
