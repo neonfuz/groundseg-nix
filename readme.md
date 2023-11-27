@@ -52,29 +52,40 @@ $ nix build
 $ nix-build
 ```
 
-## Known bugs
+## Filed bugs
 
-Last tested 2023-11-25
-
- - netdata apps plugin uses tons of cpu
  - does not run as non root user
  - spaces in path name make disk usage detection fail
  - noun folder existence makes build fail (has main entrypoint?)
- - minio does not get set up in ships
  - penpai shows 1 less core than the machine has (is this intentional?)
- - penpai doesn't work through startram
-
-## Feature requests
-
-These are features that I think groundseg v2 should implement
-
- - ships dashboard: on/off toggle
- - ships dashboard: sorting options
- - system tab disk usage: show disk labels instead of disk path
+ - feature request: run single minio server
+ - minio does not get set up in ships
+ - booting ship set to remote with lapsed subscription breaks ship and settings page
  - booting ships: populate ship names from key filename
- - booting ships: allow booting in parallel (/boot/new/sampel-palnet)
+ - ships dashboard: ability to sort by boot date
+ - ships dashboard: on/off toggle
+ - system tab disk usage: show disk labels instead of disk path
+ - docker: stop containers when stopping groundseg service
  - penpai: ability to read data from ships
+ - booting ships UX: allow booting in parallel (/boot/new/sampel-palnet)
+
+
+## Nix related feature requests (unfiled)
+
  - declarative: allow setting password from config
  - declarative: allow configuring startram from config
  - declarative: allow booting and importing ships from config
+ - docker: adapt to work with podman as well
 
+## Bugs to retest (unfiled)
+
+ - netdata apps plugin uses tons of cpu
+ - penpai doesn't work through startram
+
+## Bugs to file elsewhere (unfiled)
+
+ - lapsed startram subscriptions don't send out email
+
+## Elusive bugs (unfiled)
+
+ - booting ship after session expired flow
