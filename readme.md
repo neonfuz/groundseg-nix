@@ -68,6 +68,7 @@ $ nix-build
  - docker: stop containers when stopping groundseg service
  - penpai: ability to read data from ships
  - booting ships UX: allow booting in parallel (/boot/new/sampel-palnet)
+ - netdata apps plugin uses tons of cpu
 
 
 ## Nix related feature requests (unfiled)
@@ -79,7 +80,6 @@ $ nix-build
 
 ## Bugs to retest (unfiled)
 
- - netdata apps plugin uses tons of cpu
  - penpai doesn't work through startram
 
 ## Bugs to file elsewhere (unfiled)
