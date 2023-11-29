@@ -80,7 +80,8 @@ $ nix-build
 
 ## Bugs to retest (unfiled)
 
- - penpai doesn't work through startram
+ - minio containers don't get deleted on ship delete
+ - penpai doesn't work through startram (working at all?)
 
 ## Bugs to file elsewhere (unfiled)
 
