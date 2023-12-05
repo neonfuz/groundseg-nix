@@ -5,6 +5,12 @@
 This is a work in progress nix package for GroundSeg v2 (AKA goseg). GroundSeg
 v2 is still in development and not released yet, so expect bugs.
 
+## Caveats
+
+ - uses docker 24, may be incompatible with older versions and or podman with docker-compat
+ - runs groundseg as root (see https://github.com/Native-Planet/GroundSeg/issues/589)
+ - disables firewall
+
 ## Installation (flake + module)
 
 Until it's merged into nixpkgs, this module is distributed as a flake. In order
@@ -69,23 +75,20 @@ $ nix-build
  - penpai: ability to read data from ships
  - booting ships UX: allow booting in parallel (/boot/new/sampel-palnet)
  - netdata apps plugin uses tons of cpu
+ - minio containers don't get deleted on ship delete
+ - lapsed startram subscriptions don't send out email
 
 
 ## Nix related feature requests (unfiled)
 
+ - docker: support podman
  - declarative: allow setting password from config
  - declarative: allow configuring startram from config
  - declarative: allow booting and importing ships from config
- - docker: adapt to work with podman as well
 
 ## Bugs to retest (unfiled)
 
- - minio containers don't get deleted on ship delete
  - penpai doesn't work through startram (working at all?)
-
-## Bugs to file elsewhere (unfiled)
-
- - lapsed startram subscriptions don't send out email
 
 ## Elusive bugs (unfiled)
 
