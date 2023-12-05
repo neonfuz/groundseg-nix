@@ -7,7 +7,7 @@ v2 is still in development and not released yet, so expect bugs.
 
 ## Caveats
 
- - uses docker 24, may be incompatible with older versions and or podman with docker-compat
+ - uses docker 24, may be incompatible with older versions and or podman with docker-compat (see https://github.com/Native-Planet/GroundSeg/issues/624)
  - runs groundseg as root (see https://github.com/Native-Planet/GroundSeg/issues/589)
  - disables firewall (see https://github.com/neonfuz/groundseg-nix/issues/1)
 
