@@ -9,7 +9,7 @@ v2 is still in development and not released yet, so expect bugs.
 
  - uses docker 24, may be incompatible with older versions and or podman with docker-compat
  - runs groundseg as root (see https://github.com/Native-Planet/GroundSeg/issues/589)
- - disables firewall
+ - disables firewall (see https://github.com/neonfuz/groundseg-nix/issues/1)
 
 ## Installation (flake + module)
 
