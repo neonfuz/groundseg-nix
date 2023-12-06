@@ -8,15 +8,14 @@
 
 let
   ## Stable
-  #version = "2.0.1-1";
-  #rev = ;
-  #hash = ;
+  version = "2.0.3";
+  rev = "b4341a2c068eb5384713d57525facddca3e365af";
+  hash = "sha256-28NajI30tTtbp7KFNGoSfatLZ6Z1O5sVvX01G9kGj1E=";
 
   # Dev
-  version = "unstable-2023-11-28";
-  rev = "6146c1ab3954b2bf15edfdddb712ad2f816d227d";
-  hash = "sha256-4VWguVmN1TBwdx3Moqf6f9C7tHKbGYjS4c5OM/Swhv8=";
-  #hash = lib.fakeHash;
+  #version = "unstable-2023-11-28";
+  #rev = "6210802318676c66ce5d80f9eb95c2f126fa4181";
+  #hash = "sha256-TQ5k+IxmLfO8QmEy6RC9yb36oLHQ8UHz2Zm3WdwDGx8=";
 
   gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";

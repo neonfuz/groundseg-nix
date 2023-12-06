@@ -77,7 +77,7 @@ $ nix-build
  - netdata apps plugin uses tons of cpu
  - minio containers don't get deleted on ship delete
  - lapsed startram subscriptions don't send out email
-
+ - groundseg growing ram usage
 
 ## Nix related feature requests (unfiled)
 
