@@ -16,7 +16,7 @@ v2 is still in development and not released yet, so expect bugs.
 Until it's merged into nixpkgs, this module is distributed as a flake. In order
 to install the systemd service you need to enable flakes on your. For info on
 enabling flakes on nixos go
-[here](https://nixos.wiki/wiki/Flakes#Enable_flakes_permanently_in_NixOS)
+[here](https://nixos-and-flakes.thiscute.world/nixos-with-flakes/nixos-with-flakes-enabled)
 
 flake.nix:
 ```nix
