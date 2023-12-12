@@ -42,7 +42,7 @@ flake.nix:
 }
 ```
 
-## Unfiled upstream groundseg bugs / feature requests
+## Unfiled GroundSeg bugs and feature requests
 
 ### Nix related feature requests
 
