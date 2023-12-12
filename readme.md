@@ -35,6 +35,7 @@ flake.nix:
 }
 ```
 
+configuration.nix:
 ```nix
 {
   # Enable the groundseg service
