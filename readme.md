@@ -42,38 +42,18 @@ flake.nix:
 }
 ```
 
-## Filed bugs
+## Unfiled upstream groundseg bugs / feature requests
 
- - does not run as non root user
- - spaces in path name make disk usage detection fail
- - noun folder existence makes build fail (has main entrypoint?)
- - penpai shows 1 less core than the machine has (is this intentional?)
- - feature request: run single minio server
- - minio does not get set up in ships
- - booting ship set to remote with lapsed subscription breaks ship and settings page
- - booting ships: populate ship names from key filename
- - ships dashboard: ability to sort by boot date
- - ships dashboard: on/off toggle
- - system tab disk usage: show disk labels instead of disk path
- - docker: stop containers when stopping groundseg service
- - penpai: ability to read data from ships
- - booting ships UX: allow booting in parallel (/boot/new/sampel-palnet)
- - netdata apps plugin uses tons of cpu
- - minio containers don't get deleted on ship delete
- - lapsed startram subscriptions don't send out email
- - groundseg growing ram usage
+### Nix related feature requests
 
-## Nix related feature requests (unfiled)
-
- - docker: support podman
  - declarative: allow setting password from config
  - declarative: allow configuring startram from config
  - declarative: allow booting and importing ships from config
 
-## Bugs to retest (unfiled)
+### Bugs to retest before filing
 
- - penpai doesn't work through startram (working at all?)
+ - penpai doesn't work through startram
 
-## Elusive bugs (unfiled)
+### Elusive bugs
 
- - booting ship after session expired flow
+ - doing actions after session expired
