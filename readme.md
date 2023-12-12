@@ -42,22 +42,6 @@ flake.nix:
 }
 ```
 
-## Building
-
-You can also build the groundseg package without the systemd service for testing
-
-### Flakes (recommended):
-
-```bash
-$ nix build
-```
-
-### Non-flakes (compat layer):
-
-```bash
-$ nix-build
-```
-
 ## Filed bugs
 
  - does not run as non root user
