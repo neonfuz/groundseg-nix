@@ -7,15 +7,9 @@
 }:
 
 let
-  ## Stable
-  version = "2.0.3";
-  rev = "b4341a2c068eb5384713d57525facddca3e365af";
-  hash = "sha256-28NajI30tTtbp7KFNGoSfatLZ6Z1O5sVvX01G9kGj1E=";
-
-  # Dev
-  #version = "unstable-2023-11-28";
-  #rev = "6210802318676c66ce5d80f9eb95c2f126fa4181";
-  #hash = "sha256-TQ5k+IxmLfO8QmEy6RC9yb36oLHQ8UHz2Zm3WdwDGx8=";
+  version = "2.0.8"; # Stable
+  rev = "e275f62d712aac0d221e87f170b3ccccaaf2e335";
+  hash = "sha256-jY59ukegprpKu6JKg2E2vwMRFmtC7v0BjsOcKQyKu0A=";
 
   gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";
@@ -23,6 +17,7 @@ let
     rev = rev;
     hash = hash;
   };
+
   goseg-ui = buildNpmPackage rec {
     pname = "goseg-ui";
     inherit version;
@@ -62,10 +57,11 @@ buildGo121Module rec {
     find . -type f -iname \*.go -exec sed -i 's|/opt/nativeplanet/groundseg|/var/lib/groundseg|g' {} \;
 
     # HACK: remove noun folder to prevent build errors trying to build it
+    # https://github.com/Native-Planet/GroundSeg/issues/591
     rm -r noun
   '';
 
-  vendorHash = "sha256-YrMs08zQkSUZRkiMFSD9jCxktDOmT+KogahTBRyzv+U=";
+  vendorHash = "sha256-jfTWlgFGIWc6EwBT0oqfLOXQZnF0wLbJpoXg+bIYI0Y=";
 
   meta = with lib; {
     description = "The best way to run an Urbit ship";

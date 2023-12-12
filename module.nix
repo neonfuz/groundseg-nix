@@ -56,7 +56,7 @@ in
         User = "root";
         Group = "root";
         Restart = "always";
-        ExecStart = "${lib.getBin cfg.package}/bin/goseg";
+        ExecStart = "${lib.getBin cfg.package}/bin/groundseg";
         StateDirectory = "groundseg";
         StateDirectoryMode = "0750";
         Type = "simple";
