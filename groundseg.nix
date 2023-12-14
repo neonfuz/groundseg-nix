@@ -7,14 +7,13 @@
 }:
 
 let
-  version = "2.0.9"; # Stable
-  owner = "Native-Planet";
-  rev = "e275f62d712aac0d221e87f170b3ccccaaf2e335";
-  repo = "GroundSeg";
-  hash = "sha256-jY59ukegprpKu6JKg2E2vwMRFmtC7v0BjsOcKQyKu0A=";
+  version = "v2.0.10"; # Stable
 
   gosegSrc = fetchFromGitHub {
-    inherit owner rev repo hash;
+    owner = "Native-Planet";
+    repo = "GroundSeg";
+    rev = "v${version}";
+    hash = "sha256-8Eq8yOKqXi63x80fQ7Ew1IM3bwdpznrdsV2vm172zMM=";
   };
 
   goseg-ui = buildNpmPackage rec {
