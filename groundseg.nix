@@ -7,13 +7,13 @@
 }:
 
 let
-  version = "v2.0.10"; # Stable
+  version = "2.0.11";
 
   gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
     rev = "v${version}";
-    hash = "sha256-8Eq8yOKqXi63x80fQ7Ew1IM3bwdpznrdsV2vm172zMM=";
+    hash = "sha256-sX+R3ATLJfqt6lyiYyCCaKxpR7aGwYOOmSFlmLqDd4Y=";
   };
 
   goseg-ui = buildNpmPackage rec {
