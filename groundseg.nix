@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , lm_sensors
+, makeWrapper
 , fetchFromGitHub
 , buildNpmPackage
 , buildGo121Module
@@ -9,18 +10,18 @@
 let
   version = "2.0.12";
 
-  gosegSrc = fetchFromGitHub {
+  groundsegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
     rev = "v${version}";
     hash = "sha256-Q+KzOpgmPClgE9ogSHf+W3imGemMA5cGh4SQyI2rfEg=";
   };
 
-  goseg-ui = buildNpmPackage rec {
-    pname = "goseg-ui";
+  groundseg-ui = buildNpmPackage rec {
+    pname = "groundseg-ui";
     inherit version;
 
-    src = gosegSrc + "/ui";
+    src = groundsegSrc + "/ui";
 
     npmDepsHash = "sha256-h/fj+jxL1601fPOCSOLW2awOwZsPcH4qFGQgAIlMJZA=";
 
@@ -39,19 +40,20 @@ let
   };
 in
 buildGo121Module rec {
-  pname = "goseg";
+  pname = "groundseg";
   inherit version;
 
-  src = gosegSrc + "/goseg";
+  src = groundsegSrc + "/goseg";
 
-  buildInputs = [ lm_sensors ];
+  buildInputs = [ lm_sensors makeWrapper ];
 
-  preBuild = ''
-    # Copy frontend into web folder, symlink doesn't work
-    cp -r ${goseg-ui} ./web
+  # Copy frontend into web folder:
+  # Symlink doesn't work, see: https://github.com/golang/go/issues/44507
+  preBuild = "cp -r ${groundseg-ui} ./web";
 
-    # Put config in /var/lib instead of /opt
-    find . -type f -iname \*.go -exec sed -i 's|/opt/nativeplanet/groundseg|/var/lib/groundseg|g' {} \;
+  # Use /var/lib/groundseg instead of /opt/nativeplanet/groundseg:
+  postInstall = ''
+    wrapProgram "$out/bin/groundseg" --set GS_BASE_PATH /var/lib/groundseg
   '';
 
   vendorHash = "sha256-jfTWlgFGIWc6EwBT0oqfLOXQZnF0wLbJpoXg+bIYI0Y=";
