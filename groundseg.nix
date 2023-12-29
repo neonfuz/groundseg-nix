@@ -7,13 +7,13 @@
 }:
 
 let
-  version = "2.0.11";
+  version = "2.0.12";
 
   gosegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
     rev = "v${version}";
-    hash = "sha256-sX+R3ATLJfqt6lyiYyCCaKxpR7aGwYOOmSFlmLqDd4Y=";
+    hash = "sha256-Q+KzOpgmPClgE9ogSHf+W3imGemMA5cGh4SQyI2rfEg=";
   };
 
   goseg-ui = buildNpmPackage rec {
@@ -44,8 +44,7 @@ buildGo121Module rec {
 
   src = gosegSrc + "/goseg";
 
-  # TODO check if this is the proper way to import sensors
-  propegatedBuildInputs = [ lm_sensors ];
+  buildInputs = [ lm_sensors ];
 
   preBuild = ''
     # Copy frontend into web folder, symlink doesn't work
@@ -53,10 +52,6 @@ buildGo121Module rec {
 
     # Put config in /var/lib instead of /opt
     find . -type f -iname \*.go -exec sed -i 's|/opt/nativeplanet/groundseg|/var/lib/groundseg|g' {} \;
-
-    # HACK: remove noun folder to prevent build errors trying to build it
-    # https://github.com/Native-Planet/GroundSeg/issues/591
-    rm -r noun
   '';
 
   vendorHash = "sha256-jfTWlgFGIWc6EwBT0oqfLOXQZnF0wLbJpoXg+bIYI0Y=";
