@@ -8,13 +8,13 @@
 }:
 
 let
-  version = "2.0.13";
+  version = "2.2.0-hotfix1";
 
   groundsegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
     rev = "v${version}";
-    hash = "sha256-7XqBAccAhM0ioOqh7YTk89fup3LW7+Cv/ZeRazxShPM=";
+    hash = "sha256-oEEDuUeOsvt9wIzG8hpdmGF1suJ79hekd3f7mj53uhI=";
   };
 
   groundseg-ui = buildNpmPackage rec {
@@ -56,7 +56,7 @@ buildGo121Module rec {
     wrapProgram "$out/bin/groundseg" --set GS_BASE_PATH /var/lib/groundseg
   '';
 
-  vendorHash = "sha256-HhJ0X5kTKxT4rs35RO4h85oJgpjregHiQWkov+FuPCE=";
+  vendorHash = "sha256-hMYXmrFe9KJoXrUd6hhgLmUE2CDvrcY+rkdYfHtEfLY=";
 
   meta = with lib; {
     description = "The best way to run an Urbit ship";

@@ -27,7 +27,7 @@ in
       description = "GroundSeg daemon user";
       isSystemUser = true;
       group = "groundseg";
-      extraGroups = [ "docker" ];
+      extraGroups = [ "podman" "docker" ];
     };
 
     users.groups.groundseg = { };
@@ -40,13 +40,26 @@ in
     networking.networkmanager.enable = true;
 
     virtualisation.docker.enable = true;
-    virtualisation.docker.package = pkgs.docker_24;
+#    virtualisation.docker.package = pkgs.docker_24;
+
+    environment.systemPackages = with pkgs; [ docker-client ];
+
+#    # TODO get podman working
+#    virtualisation.podman = {
+#      enable = true;
+#      #dockerCompat = true;
+#      dockerSocket.enable = true;
+#      defaultNetwork.settings.dns_enabled = true;
+#    };
+#    # Allow podman to listen on port 80.
+#    boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
 
     systemd.services.groundseg = {
       description = "NativePlanet GroundSeg Controller";
 
       # Copied from nix-foundryvtt, consider changing
       after = [ "network-online.target" ];
+      #depends = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
@@ -64,13 +77,4 @@ in
     };
   };
 }
-
-# TODO get podman working
-#virtualisation.podman = {
-#  enable = true;
-#  dockerCompat = true;
-#  defaultNetwork.settings.dns_enabled = true;
-#};
-# Allow podman to listen on port 80.
-#boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
 
