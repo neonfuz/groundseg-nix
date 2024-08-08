@@ -35,12 +35,9 @@ in
     # TODO reduce this to just opening the necessary ports
     networking.firewall.enable = false;
 
-    # Experiment: remove networkmanager to see how much it affects closure size
-    # results, closure was 800mb smaller, probably due to excluding gtk4
     networking.networkmanager.enable = true;
 
     virtualisation.docker.enable = true;
-#    virtualisation.docker.package = pkgs.docker_24;
 
     environment.systemPackages = with pkgs; [ docker-client ];
 
@@ -57,9 +54,6 @@ in
     systemd.services.groundseg = {
       description = "NativePlanet GroundSeg Controller";
 
-      # Copied from nix-foundryvtt, consider changing
-      after = [ "network-online.target" ];
-      #depends = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
@@ -68,6 +62,7 @@ in
         #Group = "groundseg";
         User = "root";
         Group = "root";
+
         Restart = "always";
         ExecStart = "${lib.getBin cfg.package}/bin/groundseg";
         StateDirectory = "groundseg";
