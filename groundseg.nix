@@ -8,13 +8,13 @@
 }:
 
 let
-  version = "2.2.0-hotfix1";
+  version = "2.2.1";
 
   groundsegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "v${version}";
-    hash = "sha256-oEEDuUeOsvt9wIzG8hpdmGF1suJ79hekd3f7mj53uhI=";
+    rev = "ce3e18b7e8ef32214736a36279b146f6b5dce974";
+    hash = "sha256-r5c6jHjqRhY52oRjesG5N03wxAjrvcSValUamXnLnRU=";
   };
 
   groundseg-ui = buildNpmPackage rec {
