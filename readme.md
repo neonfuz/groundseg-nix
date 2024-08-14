@@ -7,8 +7,8 @@ A flake for installing GroundSeg on NixOS.
 ## Installation (flake + module)
 
 Enabling the flake will install GroundSeg as a service, as well as all of it's dependencies.
-The most significant dependency is docker 24. GroundSeg requires docker 24+, so it may fail
-to install if you have manually enabled a lower version or podman with docker-compat.
+The most significant dependency is docker. GroundSeg requires docker and uses the docker socket,
+so it may fail to install if you have manually enabled a lower version or podman with docker-compat.
 
 If you have not yet done so, configure your NixOS to use flakes. To do this, follow
 `Enabling Flakes Support` and `Switching to flake.nix for System Configuration`
@@ -47,7 +47,7 @@ configuration.nix:
 
 ## Caveats
 
- - uses docker 24, may be incompatible with different versions and or podman+docker-compat (see https://github.com/Native-Planet/GroundSeg/issues/624)
+ - uses docker with docker socket, may be incompatible with podman+docker-compat (see https://github.com/Native-Planet/GroundSeg/issues/624)
  - runs groundseg as root (see https://github.com/Native-Planet/GroundSeg/issues/589)
  - disables firewall (see https://github.com/neonfuz/groundseg-nix/issues/1)
 
@@ -62,7 +62,4 @@ configuration.nix:
 ### Bugs to retest before filing
 
  - penpai doesn't work through startram
-
-### Elusive bugs
-
  - doing actions after session expired
