@@ -4,17 +4,17 @@
 , makeWrapper
 , fetchFromGitHub
 , buildNpmPackage
-, buildGo121Module
+, buildGo123Module
 }:
 
 let
-  version = "2.2.1";
+  version = "2.4.5";
 
   groundsegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "ce3e18b7e8ef32214736a36279b146f6b5dce974";
-    hash = "sha256-r5c6jHjqRhY52oRjesG5N03wxAjrvcSValUamXnLnRU=";
+    rev = "95be8964b070f48f0e5a42c50d010e74f2aab166";
+    hash = "sha256-BE+jCtpal5OFk8M4twBbh4AkchozyCaPdjY/iLpHPpA=";
   };
 
   groundseg-ui = buildNpmPackage rec {
@@ -39,13 +39,13 @@ let
     };
   };
 in
-buildGo121Module rec {
+buildGo123Module rec {
   pname = "groundseg";
   inherit version;
 
   src = groundsegSrc + "/goseg";
 
-  buildInputs = [ lm_sensors makeWrapper ];
+  buildInputs = [ lm_sensors makeWrapper ]; # lsblk
 
   # Copy frontend into web folder:
   # Symlink doesn't work, see: https://github.com/golang/go/issues/44507
@@ -56,7 +56,7 @@ buildGo121Module rec {
     wrapProgram "$out/bin/groundseg" --set GS_BASE_PATH /var/lib/groundseg
   '';
 
-  vendorHash = "sha256-hMYXmrFe9KJoXrUd6hhgLmUE2CDvrcY+rkdYfHtEfLY=";
+  vendorHash = "sha256-iuqM+1u37BAm5lnpr15FVc+rJFzIMmfJPeVkU1S4P2U=";
 
   meta = with lib; {
     description = "The best way to run an Urbit ship";
