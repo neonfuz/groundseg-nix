@@ -8,13 +8,13 @@
 }:
 
 let
-  version = "2.4.5";
+  version = "2.4.7";
 
   groundsegSrc = fetchFromGitHub {
     owner = "Native-Planet";
     repo = "GroundSeg";
-    rev = "95be8964b070f48f0e5a42c50d010e74f2aab166";
-    hash = "sha256-BE+jCtpal5OFk8M4twBbh4AkchozyCaPdjY/iLpHPpA=";
+    rev = "81c0bfcf56675f9f2968d4f65463e043abf08a37";
+    hash = "sha256-h0EHijO0E/VMNJFLj4VKM8t+b/qbGzJ2yIYT91MJoHU=";
   };
 
   groundseg-ui = buildNpmPackage rec {
