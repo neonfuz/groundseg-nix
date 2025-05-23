@@ -1,7 +1,7 @@
 {
   description = "The best way to run an Urbit ship";
 
-  inputs.nixpkgs.url = "nixpkgs/nixos-24.11";
+  inputs.nixpkgs.url = "nixpkgs/nixos-25.05";
 
   outputs = { self, nixpkgs, ... }:
     let
